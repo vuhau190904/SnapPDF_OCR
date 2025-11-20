@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node local.js",
-    "dev": "nodemon local.js"
+    "dev": "nodemon local.js",
+    "clear": "node clear-queue.js",
+    "clear:detailed": "node clear-queue.js --detailed",
+    "clear:output": "node clear-queue.js --output",
+    "clear:both": "node clear-queue.js --both"
   },
   "keywords": ["aws", "sqs", "textract", "ocr"],
   "author": "",

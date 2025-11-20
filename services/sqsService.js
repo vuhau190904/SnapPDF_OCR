@@ -90,6 +90,7 @@ class SQSService {
       return {
         id: body.id,
         language: body.language || 'en',
+        extension: body.extension,
         receiptHandle: message.ReceiptHandle,
       };
     } catch (error) {

@@ -63,8 +63,9 @@ class SnapPDFOCRService {
 
       // Perform OCR
       const ocrResult = await this.textractService.processOCR(
-        `images/${parsedMessage.id}`
+        `images/${parsedMessage.id}.${parsedMessage.extension}`
       );
+      console.log('OCR result:', ocrResult);
 
       await this.sqsService.deleteMessage(parsedMessage.receiptHandle);
 

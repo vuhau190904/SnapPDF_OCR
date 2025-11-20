@@ -9,13 +9,12 @@ class TextractService {
       region: process.env.AWS_REGION || 'us-east-1',
     });
     
-    this.bucketName = process.env.S3_BUCKET_NAME;
+    this.bucketName = process.env.AWS_S3_BUCKET;
   }
 
   async processOCR(s3Key) {
     try {
       console.log(`Processing OCR for S3 key: ${s3Key}`);
-
       const command = new DetectDocumentTextCommand({
         Document: {
           S3Object: {
