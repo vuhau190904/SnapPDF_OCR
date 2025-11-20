@@ -1,0 +1,23 @@
+{
+  "name": "snappdf-ocr-service",
+  "version": "1.0.0",
+  "description": "AWS SQS + Textract OCR Service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node local.js",
+    "dev": "nodemon local.js"
+  },
+  "keywords": ["aws", "sqs", "textract", "ocr"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.600.0",
+    "@aws-sdk/client-textract": "^3.600.0",
+    "@aws-sdk/client-s3": "^3.600.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+
