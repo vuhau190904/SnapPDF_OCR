@@ -39,13 +39,11 @@ class SnapPDFOCRService {
    */
   async processMessages() {
     try {
+      console.log('Processing messages...');
       // Receive messages from input queue
       const messages = await this.sqsService.receiveMessages();
-
       // Process each message
-      for (const message of messages) {
-        await this.processMessage(message);
-      }
+      await Promise.all(messages.map(message => this.processMessage(message)));
     } catch (error) {
       console.error('Error processing messages:', error);
     }
@@ -56,7 +54,6 @@ class SnapPDFOCRService {
    */
   async processMessage(message) {
     let parsedMessage;
-
     try {
       // Parse message
       parsedMessage = this.sqsService.parseMessage(message);
@@ -69,8 +66,14 @@ class SnapPDFOCRService {
 
       await this.sqsService.deleteMessage(parsedMessage.receiptHandle);
 
+      const resultMessage = {
+        id: parsedMessage.id,
+        content: ocrResult,
+        language: parsedMessage.language,
+      }
+      console.log('Result message:', resultMessage);
       // Send result to output queue
-      await this.sqsService.sendResult(ocrResult);
+      await this.sqsService.sendResult(resultMessage);
 
       console.log(`✓ Successfully processed: ${parsedMessage.id}`);
 

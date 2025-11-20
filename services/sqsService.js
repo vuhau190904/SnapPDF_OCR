@@ -89,7 +89,7 @@ class SQSService {
 
       return {
         id: body.id,
-        language: body.language || 'en',
+        language: body.language || '',
         extension: body.extension,
         receiptHandle: message.ReceiptHandle,
       };
